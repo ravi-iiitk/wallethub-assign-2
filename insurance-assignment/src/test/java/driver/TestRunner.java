@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
 		monochrome= true
 		)
 @RunWith(Cucumber.class)
-public class TestRunnerJunit  {
+public class TestRunner  {
 
 }
 	
