@@ -60,7 +60,7 @@ public class MyProfilePage {
     public void verifyOnMyProfilePage()
     {
 
-        log.info("verifyOnInsurancePage function called");
+        log.info("verifyOnMyProfilePage function called");
         if(SeleniumCommonLib.verifyElmentVisibleHard(userName)==SeleniumCommonLib.ASSERT_STATUS.FAIL)
         {
             message = "Assertion failed while checking visibility of element -:";
@@ -73,12 +73,13 @@ public class MyProfilePage {
             log.info(message);
             Utility.takeScreenshot(driver,"verifyOnInsurancePage");
         }
-        log.info("verifyOnInsurancePage function ended execution");
+        log.info("verifyOnMyProfilePage function ended execution");
     }
     
     
     public void verifyReviewListedInActivity(String reviewText)
     {
+    	log.info("verifyReviewListedInActivity function called");
     	screenName = "Rating Page";
     	boolean ratingSubmited = false;
     	String activity_list_locator = "//div[@class='feed-content']//p[@class='feeddesc']";
@@ -98,11 +99,12 @@ public class MyProfilePage {
     	Assert.assertEquals(ratingSubmited, true);
     	if(currentListItem!=null)
     		Assert.assertEquals(currentListItem.getText().trim(), reviewText.trim());
-    	
+    	log.info("verifyReviewListedInActivity function ended execution");
     }
     
     public void verifyReviewListedInReviews(String reviewText)
     {
+    	log.info("verifyReviewListedInReviews function called");
     	screenName = "Rating Page";
     	boolean ratingSubmited = false;
     	String activity_list_locator = "//div[@class='reviews']//p";
@@ -121,7 +123,8 @@ public class MyProfilePage {
     	
     	Assert.assertEquals(ratingSubmited, true);
     	if(currentListItem!=null)
-        	Assert.assertEquals(currentListItem.getText().trim(), reviewText.trim());
+        Assert.assertEquals(currentListItem.getText().trim(), reviewText.trim());
+    	log.info("verifyReviewListedInReviews function ended execution");
     }   
-    
+   
 }

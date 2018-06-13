@@ -104,25 +104,30 @@ public class InsurancePage {
     
     public void naviagetToInsurancePage(String insruanceURL)
     {
+    	log.info("naviagetToInsurancePage function called");
     	WebDriverWait wait = new WebDriverWait(driver, 15);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.className("af-icon-cross")));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("af-icon-cross")));
         SeleniumCommonLib.clickOnWebElement(cross_button, "Cross-Button", screenName, 15);
     	if(driver!=null)
     		driver.get(insruanceURL);
+        log.info("naviagetToInsurancePage function call ended");
     }
     
     public void navigateToReviewPage(String starRating)
     {
+    	log.info("navigateToReviewPage function called");
     	String locator = "//div[@class='wh-rating-choices-holder']/a["+starRating.trim()+"]";
     	WebElement new_ratings = driver.findElement(By.xpath(locator));
     	Actions action = new Actions(driver);
     	action.moveToElement(ratings).clickAndHold().click(new_ratings).build().perform();
+    	log.info("navigateToReviewPage function call ended");
     }
     
 
     public void selectThePolicy(String policyType)
     {
+    	log.info("selectThePolicy function called");
     	screenName = "Rating Page";
     	log.info("selectThePolicy function called");
     	WebDriverWait wait = new WebDriverWait(driver, 15);
@@ -140,17 +145,19 @@ public class InsurancePage {
     
     public void enterTheReview(String reviewText)
     {
+    	log.info("enterTheReview function called");
     	screenName = "Rating Page";
     	WebDriverWait wait = new WebDriverWait(driver, 15);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("review-content")));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("review-content")));
        // SeleniumCommonLib.clickOnWebElement(review_editfield, "Review-TextBox", screenName, 15);
         SeleniumCommonLib.enterDataInFieldWeb(review_editfield, reviewText, "Review-TextBox", screenName, 15);
-     
+        log.info("enterTheReview function called ended");
     }
     
     public void enterTheStarRating(String starRating)
     {
+    	log.info("enterTheStarRating function called");
     	screenName = "Rating Page";
     	WebDriverWait wait = new WebDriverWait(driver, 15);
     	String ratingLocator = "//span[@id='overallRating']/a["+starRating+"]";
@@ -159,10 +166,12 @@ public class InsurancePage {
         WebElement starRatingElm = driver.findElement(By.xpath(ratingLocator));
         Actions action = new Actions(driver);
     	action.moveToElement(starRatingElm).click(starRatingElm).build().perform();
+    	  log.info("enterTheStarRating function called ended");
     }
     
     public void submitReview()
     {
+    	log.info("submitReview function called");
     	screenName = "Rating Page";
     	WebDriverWait wait = new WebDriverWait(driver, 15);
     	String submit_locator  = "//form[@id='reviewform']//input[@class='btn blue' and @type='submit']";
@@ -171,16 +180,19 @@ public class InsurancePage {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);	
         Actions action = new Actions(driver);
     	action.moveToElement(submit_btn).click(submit_btn).build().perform();
+    	log.info("submitReview function called ended");
     }
     
     public void verifyReviewSubmited()
     {
+    	log.info("verifyReviewSubmited function called");
     	screenName = "Rating Page";
     	WebDriverWait wait = new WebDriverWait(driver, 15);
     	String submit_locator  = "//div[@id='content']/div[@id='review']//span/a";
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(submit_locator)));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(submit_locator)));
         Assert.assertEquals("has been posted.".trim(), submit_confirm.getText().trim());
+        log.info("verifyReviewSubmited function called ended");
     }
     
 }
